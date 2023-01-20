@@ -1,0 +1,38 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PivotView
+
+<SfPivotView TValue="EmployeeDetails" Width="1200" Height="300" ShowFieldList="true">
+    <PivotViewDataSourceSettings TValue="EmployeeDetails" Url="https://localhost:44346/Employee" ExpandAll=false EnableSorting=true>
+        <PivotViewColumns>
+            <PivotViewColumn Name="EMPLOYEE_NAME"></PivotViewColumn>
+            <PivotViewColumn Name="EMPLOYEE_ID"></PivotViewColumn>
+        </PivotViewColumns>
+        <PivotViewRows>
+            <PivotViewRow Name="JOB"></PivotViewRow>
+        </PivotViewRows>
+        <PivotViewValues>
+            <PivotViewValue Name="MANAGER_ID" Caption="MANAGER ID"></PivotViewValue>
+            <PivotViewValue Name="SALARY"></PivotViewValue>
+        </PivotViewValues>
+        <PivotViewFormatSettings>
+            <PivotViewFormatSetting Name="MANAGER_ID" Format="C"></PivotViewFormatSetting>
+        </PivotViewFormatSettings>
+    </PivotViewDataSourceSettings>
+    <PivotViewGridSettings ColumnWidth="120"></PivotViewGridSettings>
+</SfPivotView>
+
+@code {
+    public class EmployeeDetails
+    {
+        public int EMPLOYEE_ID { get; set; }
+        public string EMPLOYEE_NAME { get; set; }
+        public string JOB { get; set; }
+        public int? MANAGER_ID { get; set; }
+        public Single SALARY { get; set; }
+        public Single? COMMISSION { get; set; }
+        public int DEPARTMENT_ID { get; set; }
+        public DateTime HIREDATE { get; set; }
+    }
+}
+
+
