@@ -18,9 +18,7 @@ namespace MyWebService.Controllers
         private static DataTable FetchOracleDbResult()
         {
             // Replace with your own connection string.
-            string connectionString = "Data Source=(DESCRIPTION =" +
-            "(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.200.86)(PORT = 1521))" +
-            "(CONNECT_DATA =" + "(SERVICE_NAME = ORCL)));" + "User Id=SYSTEM;Password=coolcomp@123;";
+            string connectionString = "<Enter your valid connection string here>";
             OracleConnection oracleConnection = new OracleConnection(connectionString);
             oracleConnection.Open();
             OracleCommand command = new OracleCommand("SELECT * FROM EMPLOYEES", oracleConnection);
