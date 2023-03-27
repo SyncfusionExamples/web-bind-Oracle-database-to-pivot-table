@@ -12,7 +12,7 @@ Before beginning work on the server and client projects, ensure the following so
 
 ## How to run this application?
 
-To run this application, clone the [how-to-bind-OracleDB-to-pivot-table](https://github.com/SyncfusionExamples/how-to-bind-Oracle-database-to-pivot-table.git) repository.
+To run this application, clone the [how-to-bind-Oracle-database-to-pivot-table](https://github.com/SyncfusionExamples/how-to-bind-Oracle-database-to-pivot-table.git) repository.
 
 ### Using the Web API service to connect Oracle database to a Pivot Table
 
