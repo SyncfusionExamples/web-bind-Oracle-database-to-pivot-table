@@ -7,7 +7,7 @@ namespace PivotController.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PivotController : ControllerBase
+    public class MyWebService : ControllerBase
     {
         [HttpGet(Name = "GetOracleResult")]
         public object Get()

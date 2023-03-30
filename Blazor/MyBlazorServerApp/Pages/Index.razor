@@ -1,0 +1,69 @@
+﻿@page "/"
+@using System.Data
+@using Oracle.ManagedDataAccess.Client
+@using Syncfusion.Blazor.PivotView
+
+<SfPivotView TValue="EmployeeDetails" Width="1000" Height="300" ShowFieldList="true">
+    <PivotViewDataSourceSettings TValue="EmployeeDetails" DataSource="@dataSource" ExpandAll=false EnableSorting=true>
+        <PivotViewColumns>
+            <PivotViewColumn Name="JOB" Caption="Designation"></PivotViewColumn>
+        </PivotViewColumns>
+        <PivotViewRows>
+            <PivotViewRow Name="EMPLOYEE_NAME" Caption="Employee Name"></PivotViewRow>
+        </PivotViewRows>
+        <PivotViewValues>
+            <PivotViewValue Name="SALARY" Caption="Salary"></PivotViewValue>
+            <PivotViewValue Name="COMMISSION" Caption="Commission"></PivotViewValue>
+        </PivotViewValues>
+        <PivotViewFormatSettings>
+            <PivotViewFormatSetting Name="SALARY" Format="C0"></PivotViewFormatSetting>
+            <PivotViewFormatSetting Name="COMMISSION" Format="C0"></PivotViewFormatSetting>
+        </PivotViewFormatSettings>
+    </PivotViewDataSourceSettings>
+    <PivotViewGridSettings ColumnWidth="120"></PivotViewGridSettings>
+</SfPivotView>
+
+@code {
+    public List<EmployeeDetails> dataSource { get; set; }
+    protected override void OnInitialized()
+    {
+        List<EmployeeDetails> employeeData = new List<EmployeeDetails>();
+        string connectionString = "<Enter your valid connection string here>";
+        OracleConnection connection = new OracleConnection(connectionString);
+        connection.Open();
+        OracleCommand command = new OracleCommand("SELECT * FROM EMPLOYEES", connection);
+        using (OracleDataReader reader = command.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                employeeData.Add(new EmployeeDetails()
+                {
+                    DEPARTMENT_ID = Convert.ToInt32(reader["DEPARTMENT_ID"]),
+                    EMPLOYEE_ID = Convert.ToInt32(reader["EMPLOYEE_ID"]),
+                    EMPLOYEE_NAME = reader["EMPLOYEE_NAME"].ToString(),
+                    JOB = reader["JOB"].ToString(),
+                    MANAGER_ID = Convert.IsDBNull(reader["MANAGER_ID"]) ? null : Convert.ToInt32(reader["MANAGER_ID"]),
+                    SALARY = Convert.ToSingle(reader["SALARY"]),
+                    COMMISSION = Convert.IsDBNull(reader["COMMISSION"]) ? null : Convert.ToSingle(reader["COMMISSION"]),
+                    HIREDATE = Convert.ToDateTime(reader["HIREDATE"])
+                });
+            }
+        }
+        connection.Close();
+        this.dataSource = employeeData;
+    }
+
+    public class EmployeeDetails
+    {
+        public int EMPLOYEE_ID { get; set; }
+        public string EMPLOYEE_NAME { get; set; }
+        public string JOB { get; set; }
+        public int? MANAGER_ID { get; set; }
+        public Single SALARY { get; set; }
+        public Single? COMMISSION { get; set; }
+        public int DEPARTMENT_ID { get; set; }
+        public DateTime HIREDATE { get; set; }
+    }
+}
+
+
