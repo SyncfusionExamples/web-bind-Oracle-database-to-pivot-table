@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
-namespace PivotController.Controllers
+namespace MyWebService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MyWebService : ControllerBase
+    public class PivotController : ControllerBase
     {
         [HttpGet(Name = "GetOracleResult")]
         public object Get()
