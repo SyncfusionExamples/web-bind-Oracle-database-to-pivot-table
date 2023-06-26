@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.EJS().PivotView("PivotView").Height("300").DataSourceSettings(
+        dataSource => dataSource.Url("https://localhost:44346/Pivot"
+    ).ExpandAll(false).EnableSorting(true
+    ).Columns(columns =>
+    {
+        columns.Name("DEPARTMENT_ID").Caption("Department ID").Add();
+        columns.Name("EMPLOYEE_NAME").Caption("Employee Name").Add();
+    }).Rows(rows =>
+    {
+        rows.Name("JOB").Caption("Job").Add();
+        rows.Name("SALARY").Caption("Salary").Add();
+    }).Values(values =>
+    {
+        values.Name("EMPLOYEE_ID").Caption("Employee ID").Add();
+        values.Name("CC_EMPLOYEES").Caption("Employees").Add();
+        values.Name("CC_TAX_PERCENTAGE").Caption("Percentage").Add();
+    })).ShowFieldList(true).Render()

@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<ejs-pivotview id="PivotView" height="300" showFieldList="true">
+    <e-datasourcesettings Url="https://localhost:44346/Pivot" expandAll="false" enableSorting="true">
+        <e-columns>
+            <e-field name="DEPARTMENT_ID" caption= "Department ID"></e-field>
+            <e-field name="EMPLOYEE_NAME" caption= "Employee Name"></e-field>
+        </e-columns>
+        <e-rows>
+            <e-field name="JOB" caption= "Job"></e-field>
+            <e-field name="SALARY" caption= "Salary"></e-field>
+        </e-rows>
+        <e-values>
+            <e-field name="EMPLOYEE_ID" caption= "Employee ID"></e-field>
+            <e-field name="CC_EMPLOYEES" caption= "Employees"></e-field>
+            <e-field name="CC_TAX_PERCENTAGE" caption= "Percentage"></e-field>
+        </e-values>
+    </e-datasourcesettings>
+</ejs-pivotview>
